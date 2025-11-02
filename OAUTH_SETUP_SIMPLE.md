@@ -18,32 +18,34 @@ Ich habe deine CSV Importer App analysiert. Hier ist genau, was du für die Webs
 
 **Minimal (für Testing):**
 ```
-✅ locations.readonly
-✅ locations.write
+✅ funnels/funnel.readonly
+✅ funnels/page.readonly
+✅ funnels/redirect.readonly
 ```
 
 **Erweitert (für vollständige Funktionalität):**
 ```
-✅ locations.readonly
-✅ locations.write
-✅ locations/customValues.readonly
-✅ locations/customValues.write
+✅ funnels/funnel.readonly
+✅ funnels/page.readonly
+✅ funnels/redirect.readonly
+✅ funnels/redirect.write
 ```
 
 ### 💡 Meine Empfehlung:
 
 Starte mit diesen **4 Scopes**:
 ```
-locations.readonly
-locations.write
-locations/customValues.readonly
-locations/customValues.write
+funnels/funnel.readonly
+funnels/page.readonly
+funnels/redirect.readonly
+funnels/redirect.write
 ```
 
 Das gibt dir Zugriff auf:
-- Location-Informationen
-- Custom Values (für Metadata)
-- Basis-Funktionalität zum Testen
+- Bestehende Funnels lesen
+- Funnel-Pages analysieren
+- Redirects erstellen (für importierte Pages)
+- Minimale, sichere Berechtigungen
 
 ---
 
@@ -157,11 +159,11 @@ Du kannst es später generieren, wenn du Webhooks implementierst.
 ### Schritt 1: Scopes auswählen
 
 1. Klicke auf "Select Scopes"
-2. Suche und wähle:
-   - `locations.readonly`
-   - `locations.write`
-   - `locations/customValues.readonly`
-   - `locations/customValues.write`
+2. Suche nach "fun" und wähle:
+   - `funnels/funnel.readonly`
+   - `funnels/page.readonly`
+   - `funnels/redirect.readonly`
+   - `funnels/redirect.write`
 3. Die ausgewählten Scopes erscheinen als blaue Tags
 
 ### Schritt 2: Redirect URLs hinzufügen
@@ -233,10 +235,10 @@ const REDIRECT_URI = process.env.GHL_REDIRECT_URI;
 
 // Scopes für Website Cloner
 const SCOPES = [
-  'locations.readonly',
-  'locations.write',
-  'locations/customValues.readonly',
-  'locations/customValues.write'
+  'funnels/funnel.readonly',
+  'funnels/page.readonly',
+  'funnels/redirect.readonly',
+  'funnels/redirect.write'
 ].join(' ');
 
 // Step 1: Redirect to GHL OAuth
@@ -375,10 +377,10 @@ console.log('Custom Values:', response.data);
 ## 9. Checkliste (Genau wie bei CSV Importer)
 
 - [ ] **Scopes ausgewählt**
-  - [ ] `locations.readonly`
-  - [ ] `locations.write`
-  - [ ] `locations/customValues.readonly`
-  - [ ] `locations/customValues.write`
+  - [ ] `funnels/funnel.readonly`
+  - [ ] `funnels/page.readonly`
+  - [ ] `funnels/redirect.readonly`
+  - [ ] `funnels/redirect.write`
 
 - [ ] **Redirect URLs hinzugefügt**
   - [ ] `http://localhost:3000/auth/callback`
@@ -428,7 +430,7 @@ console.log('Custom Values:', response.data);
 
 1. **Gehe zu:** https://marketplace.gohighlevel.com/app-settings/[DEINE-APP-ID]/advanced/auth
 
-2. **Scopes:** Wähle `locations.readonly`, `locations.write`, `locations/customValues.readonly`, `locations/customValues.write`
+2. **Scopes:** Wähle `funnels/funnel.readonly`, `funnels/page.readonly`, `funnels/redirect.readonly`, `funnels/redirect.write`
 
 3. **Redirect URLs:** Füge hinzu:
    - `http://localhost:3000/auth/callback`
